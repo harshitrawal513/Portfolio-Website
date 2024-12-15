@@ -11,6 +11,7 @@
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: #f5f5f5;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     .navbar {
@@ -41,14 +42,13 @@
       transition: background-color 0.3s, transform 0.3s;
     }
 
-    /* Subtle hover effect for navbar buttons */
     .navbar .nav-links a:hover {
       background-color: #6a0dad;
       color: #fff;
       transform: scale(1.05);
     }
 
-    /* Top Header Section */
+    /* Home Section */
     .container {
       position: relative;
       display: flex;
@@ -60,17 +60,29 @@
       margin: 20px;
       border-radius: 10px;
       z-index: 2;
-      transition: transform 0.3s ease-in-out; /* Adds smooth motion */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      opacity: 0.5; /* Adjust opacity for better text visibility */
     }
 
     .container:hover {
-      transform: translateY(-10px); /* Moves the container up on hover */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adds a shadow to highlight the container */
+      transform: translateY(-10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .container .text {
       max-width: 50%;
       text-align: left;
+      z-index: 2; /* Ensure text is above the video */
     }
 
     .container .text h1 {
@@ -114,11 +126,10 @@
       transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     }
 
-    /* Highlight hover effect for View Resume button */
     .container .text .btn:hover {
-      background-color: #ff6600;  /* Highlight color */
-      transform: translateY(-5px); /* Moves the button up slightly */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
+      background-color: #ff6600;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .container .text .btn i {
@@ -138,7 +149,7 @@
 
     .container .image {
       max-width: 40%;
-      transition: transform 0.3s ease-in-out; /* Adds smooth motion */
+      transition: transform 0.5s ease-in-out;
     }
 
     .container .image img {
@@ -150,17 +161,8 @@
     }
 
     .container .image:hover img {
-      transform: scale(1.1); /* Slightly enlarges the image when hovered */
-    }
-
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      transform: scale(1.1); /* Scale effect on hover */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Enhanced shadow on hover */
     }
 
     /* About Section */
@@ -174,7 +176,7 @@
     }
 
     .about-section:hover {
-      transform: translateY(-10px); /* Moves the about section up on hover */
+      transform: translateY(-10px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -192,7 +194,7 @@
     }
 
     .about-section .profile-pic:hover img {
-      transform: scale(1.1); /* Slightly enlarges the image when hovered */
+      transform: scale(1.1);
     }
 
     .about-section .about-content {
@@ -245,7 +247,7 @@
     }
 
     .skills-section:hover {
-      transform: translateY(-10px); /* Moves the skill section up on hover */
+      transform: translateY(-10px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
@@ -276,10 +278,9 @@
       transition: transform 0.3s ease-in-out;
     }
 
-    /* Hover effect with motion */
     .skill-card:hover {
-      transform: translateY(-10px); /* Moves the card up when hovered */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adds a shadow to highlight the card */
+      transform: translateY(-10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
     .skill-card img {
@@ -289,7 +290,7 @@
     }
 
     .skill-card:hover img {
-      transform: scale(1.1); /* Slightly enlarges the image when the card is hovered */
+      transform: scale(1.1);
     }
 
     .skill-card p {
@@ -297,33 +298,147 @@
       font-size: 1rem;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        text-align: center;
-      }
+ ```html
+    /* Projects Section */
+    .projects-section {
+      padding: 50px;
+      background-color: #fff;
+    }
 
-      .container .text, .container .image {
-        max-width: 100%;
+    .projects-section h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Ensure equal height */
+      height: 100%; /* Make all project cards equal height */
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .project-card .project-title {
+      background-color: #ffcc00;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .project-card .project-description {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .project-card .project-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+    .project-card .project-buttons button {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      flex: 1; /* Make buttons equal width */
+      margin: 0 5px; /* Add margin between buttons */
+    }
+
+    .project-card .project-buttons button:hover {
+      background-color: #555;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 0 10px; /* Add some padding to the body */
       }
 
       .navbar {
         flex-direction: column;
-        padding: 20px;
+        padding: 10px;
+      }
+
+      .navbar .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Reduce gap */
+      }
+
+      .container {
+        flex-direction: column; /* Stack text and image vertically */
+        text-align: center; /* Center text */
+        padding: 20px; /* Reduce padding */
+      }
+
+      .container .text, .container .image {
+        max-width: 100%; /* Ensure full width */
+      }
+
+      .container .image img {
+        width: 80%; /* Make image responsive */
+        height: auto; /* Maintain aspect ratio */
       }
 
       .about-section {
-        flex-direction: column;
-        padding: 20px;
-      }
-
-      .about-section .about-content {
-        padding-left: 0;
-        text-align: center;
+        flex-direction: column; /* Stack profile picture and content */
+        padding: 20px; /* Reduce padding */
       }
 
       .about-section .profile-pic {
-        margin-bottom: 20px;
+        margin-bottom: 20px; /* Add margin below profile picture */
+      }
+
+      .about-section .about-content {
+        padding-left: 0; /* Remove left padding */
+        text-align: center; /* Center text */
+      }
+
+      .skills-section h1 {
+        font-size: 2rem; /* Adjust font size */
+      }
+
+      .skills-section h1 span {
+        font-size: 1.5rem; /* Adjust font size */
+      }
+
+      .skill-card {
+        padding: 0.5rem; /* Reduce padding */
+      }
+
+      .projects-section h1 {
+        font-size: 2rem; /* Adjust font size */
+      }
+
+      .project-card {
+        padding: 10px; /* Reduce padding */
+      }
+
+      .project-buttons {
+        flex-direction: column; /* Stack buttons vertically */
+        margin-top: 10px; /* Add margin */
+      }
+
+      .view-project-button, .code-button {
+        width: 100%; /* Make buttons full width */
+        margin: 5px 0; /* Add margin between buttons */
       }
     }
   </style>
@@ -333,17 +448,15 @@
   <div class="navbar">
     <div class="logo">Harshid</div>
     <div class="nav-links">
-      <a class="active" href="#">Home</a>
+      <a class="active" href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#education">Education</a>
       <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
     </div>
   </div>
 
-  <!-- Home Section with Background Video -->
-  <div class="container" id="container">
+  <!-- Home Section -->
+  <div class="container" id="home">
     <video autoplay muted loop class="video-background">
       <source src="video 3.mp4" type="video/mp4">
       Your browser does not support the video tag.
@@ -392,7 +505,6 @@
       <p>
         <strong>Location:</strong> Nadiad Gujarat, India
       </p>
-      <!-- Add resume link here -->
       <a href="HARSHID RAWAL_RESUME copy.pdf" target="_blank" class="btn">
         View Resume <i class="fas fa-file-pdf"></i>
       </a>
@@ -427,7 +539,7 @@
         </p>
       </div>
       <div class="skill-card">
-        <img alt="Rasberry pi logo" height="50" src="https://cdn.freebiesupply.com/logos/thumbs/2x/raspberry-pi-logo.png" width="50"/>
+        <img alt="Raspberry Pi logo" height="50" src="https://cdn.freebiesupply.com/logos/thumbs/2x/raspberry-pi-logo.png" width="50"/>
         <p>
           Raspberry Pi
         </p>
@@ -439,7 +551,8 @@
         </p>
       </div>
       <div class="skill-card">
-        <img alt="STM Logo" height="50" src="https://yt3.googleusercontent.com/TU5x7c6XpVksmV-grAjcunyNAaD83HLHv-wS6OVRjDwQc3xzn8SQZNgw3n9U-HxmDe7RNAi41w=s900-c-k-c0x00ffffff-no-rj" width="50"/>
+        <img alt="STM Logo" height ```html
+        ="50" src="https://yt3.googleusercontent.com/TU5x7c6XpVksmV-grAjcunyNAaD83HLHv-wS6OVRjDwQc3xzn8SQZNgw3n9U-HxmDe7RNAi41w=s900-c-k-c0x00ffffff-no-rj" width="50"/>
         <p>
           STM Microcontrollers
         </p>
@@ -459,7 +572,80 @@
     </div>
   </section>
 
-  <!-- Animated Text for Home Section -->
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <h1>
+      Projects
+      <span>
+        Made
+      </span>
+    </h1>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img alt="Water Fuel Car project screenshot" src="https://via.placeholder.com/300"/>
+        <div class="project-title">Water Fuel Car</div>
+        <div class="project-buttons">
+          <a href="water-fuel-car.html" target="_self" class="view-project-button">View Project</a>
+          <button onclick="window.open('https://github.com/harshitrawal513/water-fuel-car', '_blank')" class="code-button">Code <i class="fas fa-code"></i></button>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img alt="Digital Counter project screenshot" src="https://via.placeholder.com/300"/>
+        <div class="project-title">Digital Counter with 7-Segment Display Decoder</div>
+        <div class="project-buttons">
+          <a href="digital-counter.html" target="_self" class="view-project-button">View Project</a>
+          <button onclick="window.open('https://github.com/harshitrawal513/digital-counter', '_blank')" class="code-button">Code <i class="fas fa-code"></i></button>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img alt="E-SAARTHI project screenshot" src="https://via.placeholder.com/300"/>
+        <div class="project-title">E-SAARTHI: Electronic Guide for the Visually Impaired</div>
+        <div class="project-buttons">
+          <a href="e-saarthi.html" target="_self" class="view-project-button">View Project</a>
+          <button onclick="window.open('https://github.com/harshitrawal513/e-saarthi', '_blank')" class="code-button">Code <i class="fas fa-code"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .project-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .view-project-button, .code-button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .view-project-button {
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .view-project-button:hover {
+      background-color: #06b300;
+    }
+
+    .code-button {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .code-button:hover {
+      background-color: #218838;
+    }
+  </style>
+
   <script>
     const animatedText = document.getElementById("animated-text");
     const phrases = ["Electronics Engineer", "a Problem Solver", "an Innovator"];
